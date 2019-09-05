@@ -13,18 +13,30 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserEntityDao userEntityDao;
+	@Autowired
+	private UserEntityDao userEntityDao;
 
-    @Override
-    public UserDTO saveUser(UserRequest userRequest) {
-        UserEntity userEntity = userEntityDao.save(new UserEntity(userRequest));
-        return new UserDTO(userEntity);
-    }
+	@Override
+	public UserDTO saveUser(UserRequest userRequest) {
+		UserEntity userEntity = userEntityDao.save(new UserEntity(userRequest));
+		return new UserDTO(userEntity);
+	}
 
-    @Override
-    public boolean login(String loginId, String password) {
-        UserEntity user = userEntityDao.findByLoginIdAndPassword(loginId, password);
-        return user != null;
-    }
+	@Override
+	public boolean login(String loginId, String password) {
+		List<UserEntity> user = userEntityDao.findByLoginIdAndPassword(loginId, password);
+
+		if (user != null && user.size() > 0) {
+			return Boolean.TRUE;
+		} else {
+			return Boolean.FALSE;
+		}
+
+		/*
+		 * Scenarioa 2 and 3
+		 * */
+		 // UserEntity user = userEntityDao.findByLoginIdAndPassword(loginId,password);
+		 // return user != null;
+		 
+	}
 }

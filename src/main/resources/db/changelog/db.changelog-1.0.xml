@@ -30,7 +30,8 @@
             <column name="PLACE" type="VARCHAR2(200)">
             </column>
 
-            <column name="CREATED_AT" type="TIMESTAMP(6)">
+            <!-- <column name="CREATED_AT" type="TIMESTAMP(6)"> -->
+            <column name="CREATED_AT" type="TIMESTAMP DEFAULT CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
 
